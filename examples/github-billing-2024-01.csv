@@ -1,0 +1,12 @@
+product,category,metric_name,organization,usage_quantity,unit,unit_price,gross_cost,discount_percent,discount_amount,net_cost,notes
+enterprise_seats,Licenses,Enterprise Cloud Seats,,250.0,seats,21.0,5250.0,15.0,787.5,4462.5,Based on consumed licenses
+actions,Compute,Linux Runner Minutes,,45000.0,minutes,0.008,360.0,10.0,36.0,324.0,"Total: 55000, Included: 10000"
+actions,Compute,Windows Runner Minutes,,12500.0,minutes,0.016,200.0,10.0,20.0,180.0,2x minute multiplier applied
+actions,Compute,macOS Runner Minutes,,1200.0,minutes,0.08,96.0,10.0,9.6,86.4,10x minute multiplier applied
+packages,Storage,Package Storage,,75.0,GB-month,0.008,0.6,0.0,0.0,0.6,"Total: 85 GB, Included: 10 GB"
+packages,Transfer,Data Transfer Out,,150.0,GB,0.5,75.0,0.0,0.0,75.0,"Total: 152 GB, Included: 2 GB"
+codespaces,Compute,Codespaces Compute,org-engineering,2400.0,core-hours,0.18,432.0,0.0,0.0,432.0,
+codespaces,Storage,Codespaces Storage,org-engineering,50.0,GB-month,0.07,3.5,0.0,0.0,3.5,
+copilot,Licenses,Copilot Business Seats,,180.0,seats,19.0,3420.0,20.0,684.0,2736.0,Plan: business
+advanced_security,Licenses,GHAS Active Committers,,45.0,committers,49.0,2205.0,15.0,330.75,1874.25,Unique committers in last 90 days
+TOTAL,,All Products,,,,,12042.1,,1867.85,10174.25,

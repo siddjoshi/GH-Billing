@@ -1,0 +1,216 @@
+{
+  "metadata": {
+    "enterprise": "acme-corporation",
+    "billing_month": "2024-01",
+    "generated_at": "2024-02-01T06:00:00.000000",
+    "currency": "USD",
+    "report_version": "1.0"
+  },
+  "summary": {
+    "total_gross_cost": 12042.1,
+    "total_discount": 1867.85,
+    "total_net_cost": 10174.25
+  },
+  "line_items": [
+    {
+      "product": "enterprise_seats",
+      "category": "Licenses",
+      "metric_name": "Enterprise Cloud Seats",
+      "organization": null,
+      "usage": {
+        "quantity": 250.0,
+        "unit": "seats"
+      },
+      "pricing": {
+        "unit_price": 21.0,
+        "gross_cost": 5250.0
+      },
+      "discount": {
+        "percent": 15.0,
+        "amount": 787.5
+      },
+      "net_cost": 4462.5,
+      "notes": "Based on consumed licenses"
+    },
+    {
+      "product": "actions",
+      "category": "Compute",
+      "metric_name": "Linux Runner Minutes",
+      "organization": null,
+      "usage": {
+        "quantity": 45000.0,
+        "unit": "minutes"
+      },
+      "pricing": {
+        "unit_price": 0.008,
+        "gross_cost": 360.0
+      },
+      "discount": {
+        "percent": 10.0,
+        "amount": 36.0
+      },
+      "net_cost": 324.0,
+      "notes": "Total: 55000, Included: 10000"
+    },
+    {
+      "product": "actions",
+      "category": "Compute",
+      "metric_name": "Windows Runner Minutes",
+      "organization": null,
+      "usage": {
+        "quantity": 12500.0,
+        "unit": "minutes"
+      },
+      "pricing": {
+        "unit_price": 0.016,
+        "gross_cost": 200.0
+      },
+      "discount": {
+        "percent": 10.0,
+        "amount": 20.0
+      },
+      "net_cost": 180.0,
+      "notes": "2x minute multiplier applied"
+    },
+    {
+      "product": "actions",
+      "category": "Compute",
+      "metric_name": "macOS Runner Minutes",
+      "organization": null,
+      "usage": {
+        "quantity": 1200.0,
+        "unit": "minutes"
+      },
+      "pricing": {
+        "unit_price": 0.08,
+        "gross_cost": 96.0
+      },
+      "discount": {
+        "percent": 10.0,
+        "amount": 9.6
+      },
+      "net_cost": 86.4,
+      "notes": "10x minute multiplier applied"
+    },
+    {
+      "product": "packages",
+      "category": "Storage",
+      "metric_name": "Package Storage",
+      "organization": null,
+      "usage": {
+        "quantity": 75.0,
+        "unit": "GB-month"
+      },
+      "pricing": {
+        "unit_price": 0.008,
+        "gross_cost": 0.6
+      },
+      "discount": {
+        "percent": 0.0,
+        "amount": 0.0
+      },
+      "net_cost": 0.6,
+      "notes": "Total: 85 GB, Included: 10 GB"
+    },
+    {
+      "product": "packages",
+      "category": "Transfer",
+      "metric_name": "Data Transfer Out",
+      "organization": null,
+      "usage": {
+        "quantity": 150.0,
+        "unit": "GB"
+      },
+      "pricing": {
+        "unit_price": 0.5,
+        "gross_cost": 75.0
+      },
+      "discount": {
+        "percent": 0.0,
+        "amount": 0.0
+      },
+      "net_cost": 75.0,
+      "notes": "Total: 152 GB, Included: 2 GB"
+    },
+    {
+      "product": "codespaces",
+      "category": "Compute",
+      "metric_name": "Codespaces Compute",
+      "organization": "org-engineering",
+      "usage": {
+        "quantity": 2400.0,
+        "unit": "core-hours"
+      },
+      "pricing": {
+        "unit_price": 0.18,
+        "gross_cost": 432.0
+      },
+      "discount": {
+        "percent": 0.0,
+        "amount": 0.0
+      },
+      "net_cost": 432.0,
+      "notes": ""
+    },
+    {
+      "product": "codespaces",
+      "category": "Storage",
+      "metric_name": "Codespaces Storage",
+      "organization": "org-engineering",
+      "usage": {
+        "quantity": 50.0,
+        "unit": "GB-month"
+      },
+      "pricing": {
+        "unit_price": 0.07,
+        "gross_cost": 3.5
+      },
+      "discount": {
+        "percent": 0.0,
+        "amount": 0.0
+      },
+      "net_cost": 3.5,
+      "notes": ""
+    },
+    {
+      "product": "copilot",
+      "category": "Licenses",
+      "metric_name": "Copilot Business Seats",
+      "organization": null,
+      "usage": {
+        "quantity": 180.0,
+        "unit": "seats"
+      },
+      "pricing": {
+        "unit_price": 19.0,
+        "gross_cost": 3420.0
+      },
+      "discount": {
+        "percent": 20.0,
+        "amount": 684.0
+      },
+      "net_cost": 2736.0,
+      "notes": "Plan: business"
+    },
+    {
+      "product": "advanced_security",
+      "category": "Licenses",
+      "metric_name": "GHAS Active Committers",
+      "organization": null,
+      "usage": {
+        "quantity": 45.0,
+        "unit": "committers"
+      },
+      "pricing": {
+        "unit_price": 49.0,
+        "gross_cost": 2205.0
+      },
+      "discount": {
+        "percent": 15.0,
+        "amount": 330.75
+      },
+      "net_cost": 1874.25,
+      "notes": "Unique committers in last 90 days"
+    }
+  ]
+}

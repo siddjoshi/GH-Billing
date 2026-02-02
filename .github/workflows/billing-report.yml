@@ -1,0 +1,75 @@
+# GitHub Enterprise Monthly Billing Report Workflow
+# ==================================================
+# Generates billing reports on the 1st of each month or on-demand
+
+name: Monthly Billing Report
+
+on:
+  # Run on the 1st of every month at 6 AM UTC
+  schedule:
+    - cron: '0 6 1 * *'
+
+  # Allow manual runs
+  workflow_dispatch:
+    inputs:
+      billing_month:
+        description: 'Billing month (YYYY-MM or "current")'
+        required: false
+        default: 'current'
+        type: string
+
+jobs:
+  generate-report:
+    name: Generate Billing Report
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Determine billing month
+        id: month
+        run: |
+          if [ "${{ github.event.inputs.billing_month }}" != "" ] && [ "${{ github.event.inputs.billing_month }}" != "current" ]; then
+            echo "value=${{ github.event.inputs.billing_month }}" >> $GITHUB_OUTPUT
+          else
+            echo "value=$(date -d 'last month' +'%Y-%m')" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Generate billing report
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_BILLING_TOKEN }}
+        run: |
+          python github_billing.py \
+            --enterprise ${{ vars.GITHUB_ENTERPRISE }} \
+            --month ${{ steps.month.outputs.value }} \
+            --format all \
+            --output-dir ./reports
+
+      - name: Upload reports as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: billing-reports-${{ steps.month.outputs.value }}
+          path: ./reports/
+          retention-days: 90
+
+      - name: Display summary
+        run: |
+          echo "## Billing Report Generated" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Enterprise:** ${{ vars.GITHUB_ENTERPRISE }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Month:** ${{ steps.month.outputs.value }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Summary" >> $GITHUB_STEP_SUMMARY
+          echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+          cat ./reports/*-summary.csv >> $GITHUB_STEP_SUMMARY
+          echo "\`\`\`" >> $GITHUB_STEP_SUMMARY

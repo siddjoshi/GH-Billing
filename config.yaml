@@ -1,0 +1,144 @@
+# GitHub Enterprise Billing Report Configuration
+# =============================================
+
+# GitHub Authentication
+github:
+  # Enterprise slug (from URL: github.com/enterprises/<slug>)
+  enterprise: "octodemo"
+
+  # Organizations to include (leave empty for all enterprise orgs)
+  organizations: []
+  # organizations:
+  #   - "org-one"
+  #   - "org-two"
+
+  # Authentication method: "pat" or "app"
+  auth_method: "pat"
+
+  # For PAT authentication (set via GITHUB_TOKEN env var)
+  # Required scopes: admin:enterprise, admin:org, read:org
+
+  # For GitHub App authentication
+  app:
+    app_id: ""
+    installation_id: ""
+    # Private key path or set via GITHUB_APP_PRIVATE_KEY env var
+    private_key_path: ""
+
+# Billing Configuration
+billing:
+  # Month to report (YYYY-MM format, or "current" for current month)
+  month: "current"
+
+  # Currency for display (note: GitHub bills in USD)
+  currency: "USD"
+
+  # Include zero-usage products in report
+  include_zero_usage: false
+
+# Product Pricing (GitHub List Prices as of 2024)
+# These are default list prices - adjust based on your agreement
+pricing:
+  # GitHub Enterprise Cloud (per seat/month)
+  enterprise_seats:
+    unit_price: 21.00
+    unit: "seat"
+
+  # GitHub Actions (per minute)
+  actions:
+    linux:
+      unit_price: 0.008
+      unit: "minute"
+    windows:
+      unit_price: 0.016
+      unit: "minute"
+    macos:
+      unit_price: 0.08
+      unit: "minute"
+    # Larger runners (per minute multipliers)
+    linux_large:
+      unit_price: 0.016
+      unit: "minute"
+    linux_xlarge:
+      unit_price: 0.032
+      unit: "minute"
+
+  # GitHub Packages (per GB/month)
+  packages:
+    storage:
+      unit_price: 0.008
+      unit: "GB"
+    data_transfer:
+      unit_price: 0.50
+      unit: "GB"
+
+  # GitHub Codespaces
+  codespaces:
+    compute:
+      unit_price: 0.18  # per core-hour (2-core)
+      unit: "core-hour"
+    storage:
+      unit_price: 0.07
+      unit: "GB-month"
+
+  # GitHub Copilot (per seat/month)
+  copilot:
+    business:
+      unit_price: 19.00
+      unit: "seat"
+    enterprise:
+      unit_price: 39.00
+      unit: "seat"
+
+  # GitHub Advanced Security (per committer/month)
+  advanced_security:
+    unit_price: 49.00
+    unit: "committer"
+
+# Discount Configuration
+# Discounts are applied as percentages (e.g., 15 = 15% discount)
+discounts:
+  # Global discount applied to all products
+  global: 0
+
+  # Per-product discounts (override global)
+  products:
+    enterprise_seats: 0
+    actions: 0
+    packages: 0
+    codespaces: 0
+    copilot: 0
+    advanced_security: 0
+
+  # Azure MACC Integration (optional)
+  azure_macc:
+    enabled: false
+    # Path to Azure Cost Management export CSV
+    export_path: ""
+    # Azure subscription ID for filtering
+    subscription_id: ""
+    # MACC commitment details
+    commitment_amount: 0
+    commitment_used: 0
+
+# Output Configuration
+output:
+  # Output directory for reports
+  directory: "./reports"
+
+  # Output formats to generate
+  formats:
+    - "console"
+    - "csv"
+    - "json"
+
+  # Include detailed breakdown by organization
+  org_breakdown: true
+
+  # Filename prefix
+  filename_prefix: "github-billing"
+
+# Logging
+logging:
+  level: "INFO"  # DEBUG, INFO, WARNING, ERROR
+  file: ""       # Log file path (empty for console only)
